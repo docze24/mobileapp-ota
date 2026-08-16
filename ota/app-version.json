@@ -1,5 +1,5 @@
 {
-  "_note": "Store/native version source of truth for the soft 'Update available' prompt. For each STORE release, bump BOTH `latest_version` AND `latest_version_code` to the values of the binary you ACTUALLY UPLOADED — read them from android/app/build.gradle (versionName / versionCode) and ios/*/Info.plist, NOT from app.config.js, which drifts whenever the native project is edited without a prebuild. A stale latest_version_code is what silently killed the 1.0.4 prompt: it was left at 8 (the 1.0.1 release) while the store build was 11. `show_again_after_days` re-shows a dismissed update after N days. This is the NATIVE store version, NOT the OTA bundle version in production.json. Replace the iOS id000000000 placeholder with the real numeric App Store ID once the app is live.",
+  "_note": "Store/native version source of truth for the soft 'Update available' prompt. For each STORE release, bump BOTH `latest_version` AND `latest_version_code` to the values of the binary you ACTUALLY UPLOADED — read them from android/app/build.gradle (versionName / versionCode) and ios/*/Info.plist, NOT from app.config.js, which drifts whenever the native project is edited without a prebuild. A stale latest_version_code is what silently killed the 1.0.4 prompt: it was left at 8 (the 1.0.1 release) while the store build was 11. `show_again_after_days` re-shows a dismissed update after N days. This is the NATIVE store version, NOT the OTA bundle version in production.json. The iOS store_url is deliberately storefront-less (no /in/, /us/, … segment) so App Store links open in the user's own country storefront; the numeric id6793104519 is what identifies the app. Editing ANY field here invalidates `signature` — the OTA workflow re-signs (scripts/ota/sign-manifest.mjs) before copying this file to the public artifacts repo, so never hand-copy it there.",
   "android": {
     "latest_version": "1.0.5",
     "latest_version_code": 12,
@@ -9,9 +9,9 @@
   "ios": {
     "latest_version": "1.0.0",
     "latest_version_code": 1,
-    "store_url": "https://apps.apple.com/app/id000000000",
+    "store_url": "https://apps.apple.com/app/id6793104519",
     "show_again_after_days": 7
   },
   "signature_alg": "ed25519",
-  "signature": "tcSoX8kUC09Uq+umQKId/+1fLiQ3Fs22r1ZeJRvqaQF5bJ/SvteyTQqv8BySoRwSV8VEYtTsX+vLdU1F52UfDA=="
+  "signature": "C+1mr1oPqmSZ2WeWxd3rmZPIux1XEUQRtVCqQYdfoBCX3YVADrBlCVLLUisL3B+mMKDMA8r1epuborsyj7+qAA=="
 }
