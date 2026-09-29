@@ -1,17 +1,17 @@
 {
   "_note": "Store/native version source of truth for the soft 'Update available' prompt. For each STORE release, bump BOTH `latest_version` AND `latest_version_code` to the values of the binary you ACTUALLY UPLOADED — read them from android/app/build.gradle (versionName / versionCode) and ios/*/Info.plist, NOT from app.config.js, which drifts whenever the native project is edited without a prebuild. A stale latest_version_code is what silently killed the 1.0.4 prompt: it was left at 8 (the 1.0.1 release) while the store build was 11. `show_again_after_days` re-shows a dismissed update after N days. This is the NATIVE store version, NOT the OTA bundle version in production.json. The iOS store_url is deliberately storefront-less (no /in/, /us/, … segment) so App Store links open in the user's own country storefront; the numeric id6793104519 is what identifies the app. Editing ANY field here invalidates `signature`. The app reads ONLY the public copy in docze24/mobileapp-ota and rejects it unless the signature verifies, so never hand-copy or hand-edit it there: commit this file to main (or use Actions → 'Store Version Publish' with inputs) and .github/workflows/app-version.yml re-signs it (scripts/ota/sign-manifest.mjs) and publishes it; ota.yml does the same on every OTA release.",
   "android": {
-    "latest_version": "1.0.7",
-    "latest_version_code": 16,
+    "latest_version": "1.0.11",
+    "latest_version_code": 20,
     "store_url": "https://play.google.com/store/apps/details?id=com.docze",
     "show_again_after_days": 7
   },
   "ios": {
-    "latest_version": "1.0.1",
-    "latest_version_code": 1,
+    "latest_version": "1.0.10",
+    "latest_version_code": 4,
     "store_url": "https://apps.apple.com/app/id6793104519",
     "show_again_after_days": 7
   },
   "signature_alg": "ed25519",
-  "signature": "Tg3KNjbMYWHz6plfm7gs6hgo9PTRkc5txNpw4MkGFziFBZbwbn0AAFTDnRjFKdTT3fo5aHxO6IyxWahbn8CHCQ=="
+  "signature": "wTu/XrZldpAW8SELxg2H/2jjpusZCIxjp6rCjaGPgWEFiYpDitkjUH/W4nbeLUE85Y4XxvXgre8S9KaWTqQlBA=="
 }
